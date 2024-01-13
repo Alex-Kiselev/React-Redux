@@ -1,6 +1,7 @@
 // import React from 'react';
 import './App.css';
-// import Button from './components/Button/Button';
+import JournalItem from './components/JournalItem/JournalItem';
+import Button from './components/Button/Button';
 // import Declarative36 from './lessons/Declarative36';
 // import ReactFragment35 from './lessons/ReactFragment35';
 
@@ -10,9 +11,12 @@ function App() {
 
   return (
     <>
-    {/* <Declarative36/> */}
-    {/* <ReactFragment35/> */}
-    {/* <Button/> */}
+      {/* <Declarative36/> */}
+      {/* <ReactFragment35/> */}
+      <h1>Загаловок</h1>
+      <p>Начало проект</p>
+      <Button />
+      <JournalItem />
     </>
   );
 
