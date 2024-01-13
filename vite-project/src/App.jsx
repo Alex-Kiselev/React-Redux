@@ -1,6 +1,7 @@
 // import React from 'react';
 import './App.css';
-import ReactFragment35 from './lessons/ReactFragment35';
+// import Declarative36 from './lessons/Declarative36';
+// import ReactFragment35 from './lessons/ReactFragment35';
 
 function App() {
 
@@ -8,8 +9,8 @@ function App() {
 
   return (
     <>
-    <ReactFragment35/>
-      
+    {/* <ReactFragment35/> */}
+    {/* <Declarative36/> */}
     </>
   );
 
