@@ -16,5 +16,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'semi': ['error', 'always', { 'omitLastInOneLineBlock': false}], //Автоматическое добавление точки с запятой ; при ctr + s
+    'comma-dangle': ['error', 'never'], //ругается на весящую запятую в конце ,
+    quotes: ['error', 'single'], //Ругается на 2ые кавычки при сохранение ставит 1 
   },
 }
