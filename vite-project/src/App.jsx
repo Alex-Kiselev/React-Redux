@@ -1,16 +1,17 @@
-import React from 'react';
+// import React from 'react';
 import './App.css';
+import ReactFragment35 from './lessons/ReactFragment35';
 
 function App() {
 
-  return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
+  // return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
 
-  // return (
-  //   <div>
-  //     <h1>Загаловок</h1>
-  //     <div>Начало проект</div>
-  //   </div>
-  // );
+  return (
+    <>
+    <ReactFragment35/>
+      
+    </>
+  );
 
 }
 
