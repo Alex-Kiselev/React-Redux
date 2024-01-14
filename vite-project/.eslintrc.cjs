@@ -19,5 +19,7 @@ module.exports = {
     'semi': ['error', 'always', { 'omitLastInOneLineBlock': false}], //Автоматическое добавление точки с запятой ; при ctr + s
     'comma-dangle': ['error', 'never'], //ругается на весящую запятую в конце ,
     quotes: ['error', 'single'], //Ругается на 2ые кавычки при сохранение ставит 1 
+    'react/prop-types': [0], //Выключение ПРОВЕРКИ ТИПО тк СЕЙЧАС ЧИСТЫЙ JS
+		'indent': ['error', 'tab'] // по умолчанию добавил Табы Нужно для отступов слева
   },
 }
