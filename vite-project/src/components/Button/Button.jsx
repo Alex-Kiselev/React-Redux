@@ -1,10 +1,17 @@
+import { useState } from 'react';
 import './Button.css';
 
 
 function Button() {
+	// let text = 'Сохранить';
+	const [text, setText] = useState('Сохранить');
+	console.log('РЕРЕНДЕР');
 
 	const clicked = () => {
-		console.log('привет');
+		// text = 'Закрыть';
+		// setText('Закрыть'); Меняем значение на новое
+		// setText(prev => prev + '!!!'); Изменение состояние относительно предыдущего состояния
+		setText(prev => prev + '!!!'); 
 	};
 
 	return (
@@ -12,7 +19,7 @@ function Button() {
 			onClick={clicked}
 			className="button accent"
 		>
-				Сохранить
+			{text}
 		</button>
 	);
 }
