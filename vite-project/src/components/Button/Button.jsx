@@ -5,7 +5,7 @@ import './Button.css';
 function Button() {
 	// let text = 'Сохранить';
 	const [text, setText] = useState('Сохранить');
-	console.log('РЕРЕНДЕР');
+	// console.log('РЕРЕНДЕР');
 
 	const clicked = () => {
 		// text = 'Закрыть';
