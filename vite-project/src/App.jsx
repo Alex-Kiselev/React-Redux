@@ -8,6 +8,18 @@ import Button from './components/Button/Button';
 function App() {
 
   // return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
+  const data = [
+    {
+      title: 'Подготовка к обновлению курсов',
+      date: new Date(),
+      text: 'Горные походы открывают удивительные природные ландшафты'
+    },
+    {
+      title: 'Поход в годы',
+      date: new Date(),
+      text: 'Думал, что очень много времени'
+    }
+  ];
 
   return (
     <>
@@ -16,7 +28,11 @@ function App() {
       <h1>Загаловок</h1>
       <p>Начало проект</p>
       <Button />
-      <JournalItem />
+      <JournalItem 
+        title={data[0].title}
+        text={data[0].text}
+        date={data[0].date}
+      />
     </>
   );
 
