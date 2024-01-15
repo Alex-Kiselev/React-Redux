@@ -23,6 +23,11 @@ function App() {
 		}
 	];
 
+	const inputChange = (event) => {
+		// console.log('🚀 ~ inputChange ~ event:', event);
+		// console.log('🚀 ~ inputChange ~ event:', event.target.value);
+	};
+
 	return (
 		<div className='app'>
 			<LeftPanel>
@@ -46,7 +51,7 @@ function App() {
 				</JournaList>
 			</LeftPanel>
 			<Body>
-				Body
+				<input type='text' onChange={inputChange} />
 			</Body>
 		</div>
 	);
