@@ -1,13 +1,13 @@
 import './LeftPanel.css';
 
 
-function LeftPanel() {
+function LeftPanel({ children }) {
 
 
 	return (
-		<>
-			<div></div>
-		</>
+		<div className='left-panel'>
+			{children}
+		</div>
 	);
 }
 

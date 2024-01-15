@@ -1,13 +1,13 @@
 import './JournaList.css';
 
 
-function JournaList() {
+function JournaList({ children }) {
 
 
 	return (
-		<>
-			<div></div>
-		</>
+		<div className="journal-list">
+			{children}
+		</div>
 	);
 }
 

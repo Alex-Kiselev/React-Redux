@@ -1,13 +1,13 @@
 import './Body.css';
 
 
-function Body() {
+function Body({ children }) {
 
 
 	return (
-		<>
-			<div></div>
-		</>
+		<div className='body'>
+			{children}
+		</div>
 	);
 }
 

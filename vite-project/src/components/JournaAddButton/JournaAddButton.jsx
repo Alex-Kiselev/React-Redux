@@ -1,3 +1,4 @@
+import CardButton from '../CardButton/CardButton';
 import './JournaAddButton.css';
 
 
@@ -5,9 +6,10 @@ function JournaAddButton() {
 
 
 	return (
-		<>
-			<div></div>
-		</>
+
+		<CardButton>
+			Новое воспоминание
+		</CardButton>
 	);
 }
 
