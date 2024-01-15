@@ -1,10 +1,11 @@
-// import React from 'react';
 import './App.css';
 import JournalItem from './components/JournalItem/JournalItem';
-import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
-// import Declarative36 from './lessons/Declarative36';
-// import ReactFragment35 from './lessons/ReactFragment35';
+import LeftPanel from './layouts/LeftPanel/LeftPanel';
+import Body from './layouts/Body/Body';
+import Header from './components/Header/Header';
+import JournaList from './components/JournaList/JournaList';
+import JournaAddButton from './components/JournaAddButton/JournaAddButton';
 
 function App() {
 
@@ -23,28 +24,31 @@ function App() {
 	];
 
 	return (
-		<>
-			{/* <Declarative36/> */}
-			{/* <ReactFragment35/> */}
-			<h1>Загаловок</h1>
-			<p>Начало проект</p>
-			<Button />
-			<CardButton>+ Новое воспоминание</CardButton>
-			<CardButton>
-				<JournalItem 
-					title={data[0].title}
-					text={data[0].text}
-					date={data[0].date}
-				/>
-			</CardButton>
-			<CardButton>
-				<JournalItem 
-					title={data[1].title}
-					text={data[1].text}
-					date={data[1].date}
-				/>
-			</CardButton>
-		</>
+		<div className='app'>
+			<LeftPanel>
+				<Header />
+				<JournaAddButton />
+				<JournaList>
+					<CardButton>
+						<JournalItem
+							title={data[0].title}
+							text={data[0].text}
+							date={data[0].date}
+						/>
+					</CardButton>
+					<CardButton>
+						<JournalItem
+							title={data[1].title}
+							text={data[1].text}
+							date={data[1].date}
+						/>
+					</CardButton>
+				</JournaList>
+			</LeftPanel>
+			<Body>
+				Body
+			</Body>
+		</div>
 	);
 
 }

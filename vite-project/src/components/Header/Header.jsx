@@ -6,7 +6,7 @@ function Header() {
 
 	return (
 		<>
-			<div></div>
+			Logo
 		</>
 	);
 }
