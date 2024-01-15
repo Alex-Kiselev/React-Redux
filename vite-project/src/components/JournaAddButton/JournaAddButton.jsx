@@ -7,7 +7,7 @@ function JournaAddButton() {
 
 	return (
 
-		<CardButton>
+		<CardButton className='journal-add'>
 			Новое воспоминание
 		</CardButton>
 	);
