@@ -6,6 +6,7 @@ import Body from './layouts/Body/Body';
 import Header from './components/Header/Header';
 import JournaList from './components/JournaList/JournaList';
 import JournaAddButton from './components/JournaAddButton/JournaAddButton';
+import { useState } from 'react';
 
 function App() {
 
@@ -23,9 +24,10 @@ function App() {
 		}
 	];
 
+	const [inputData, setInputData] = useState('');
+
 	const inputChange = (event) => {
-		// console.log('🚀 ~ inputChange ~ event:', event);
-		// console.log('🚀 ~ inputChange ~ event:', event.target.value);
+		setInputData(event.target.value);
 	};
 
 	return (
@@ -51,7 +53,7 @@ function App() {
 				</JournaList>
 			</LeftPanel>
 			<Body>
-				<input type='text' onChange={inputChange} />
+				<input value={inputData} type='text' onChange={inputChange} />
 			</Body>
 		</div>
 	);
