@@ -2,6 +2,6 @@
 // Это мы использовали как в примере в App он подставил автоматически свойства у "a href="
 {
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     }
 }
