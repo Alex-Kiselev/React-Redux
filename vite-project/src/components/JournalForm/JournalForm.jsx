@@ -33,8 +33,8 @@ function JournalForm() {
 
 	return (
 		<form className='journal-form' onSubmit={addJournalItem}>
-			{state.age}
-			{state2.length}
+			{/* {state.age}
+			{state2.length} */}
 			<input type='text' name='title' />
 			<input type='date' name='date' />
 			<input value={inputData} type='tag' name='text' onChange={inputChange} />
