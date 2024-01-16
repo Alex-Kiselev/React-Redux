@@ -1,7 +1,7 @@
 import './Button.css';
 
 
-function Button({text}) {
+function Button({ text, onClickCustom }) {
 	// let text = 'Сохранить';
 	// const [text, setText] = useState('Сохранить');
 	// console.log('РЕРЕНДЕР');
@@ -23,7 +23,7 @@ function Button({text}) {
 
 	return (
 		<button
-			// onClick={clicked}
+			onClick={onClickCustom}
 			className="button accent"
 		>
 			{text}
