@@ -10,7 +10,7 @@ function JournalForm() {
 	});
 
 	const [state2, setState2] = useState([1,2,3]);
-	console.log('🚀 ~ JournalForm ~ state2:', state2);
+	// console.log('🚀 ~ JournalForm ~ state2:', state2);
 
 	const inputChange = (event) => {
 		setInputData(event.target.value);
