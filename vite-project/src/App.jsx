@@ -7,11 +7,12 @@ import Header from './components/Header/Header';
 import JournaList from './components/JournaList/JournaList';
 import JournaAddButton from './components/JournaAddButton/JournaAddButton';
 import JournalForm from './components/JournalForm/JournalForm';
+import { useState } from 'react';
 
 function App() {
 
 	// return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
-	const data = [
+	const INITIAL_DATA = [
 		{
 			title: 'Подготовка к обновлению курсов',
 			date: new Date(),
@@ -23,7 +24,15 @@ function App() {
 			text: 'Думал, что очень много времени'
 		}
 	];
+	const [items, setItems] = useState(INITIAL_DATA);
 
+
+	function addTodo(item) {
+		setItems(oldItems=> [...oldItems, {
+			...item,
+			date: new Date(item.date)
+		}]);
+	}
 
 
 	return (
@@ -32,7 +41,7 @@ function App() {
 				<Header />
 				<JournaAddButton />
 				<JournaList>
-					{data.map(el => (
+					{items.map(el => (
 						<CardButton >
 							<JournalItem
 								title={el.title}
@@ -44,7 +53,7 @@ function App() {
 				</JournaList>
 			</LeftPanel>
 			<Body>
-				<JournalForm />
+				<JournalForm onSubmit={addTodo}/>
 			</Body>
 		</div >
 	);
