@@ -14,25 +14,39 @@ function App() {
 	// return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
 	const INITIAL_DATA = [
 		{
+			id: 1,
 			title: 'Подготовка к обновлению курсов',
 			date: new Date(),
 			text: 'Горные походы открывают удивительные природные ландшафты'
 		},
 		{
+			id: 2,
 			title: 'Поход в годы',
 			date: new Date(),
 			text: 'Думал, что очень много времени'
 		}
 	];
 	const [items, setItems] = useState(INITIAL_DATA);
+	console.log('🚀 ~ App ~ items:', items);
 
 
-	function addTodo(item) {
-		setItems(oldItems=> [...oldItems, {
-			...item,
-			date: new Date(item.date)
+	const addTodo = (item) => {
+		setItems(oldItems => [...oldItems, {
+			id: Math.max(...oldItems.map(el => el.id)) + 1,
+			title: item.title,
+			date: new Date(item.date),
+			text: item.text
 		}]);
-	}
+	};
+
+	const sortItems = (a, b) => {
+		if (a.date < b.date) {
+			return 1;
+		} else {
+			return -1;
+		}
+
+	};
 
 
 	return (
@@ -41,8 +55,8 @@ function App() {
 				<Header />
 				<JournaAddButton />
 				<JournaList>
-					{items.map(el => (
-						<CardButton >
+					{items.sort(sortItems).map(el => (
+						<CardButton key={el.id}>
 							<JournalItem
 								title={el.title}
 								text={el.text}
@@ -53,7 +67,7 @@ function App() {
 				</JournaList>
 			</LeftPanel>
 			<Body>
-				<JournalForm onSubmit={addTodo}/>
+				<JournalForm onSubmit={addTodo} />
 			</Body>
 		</div >
 	);
