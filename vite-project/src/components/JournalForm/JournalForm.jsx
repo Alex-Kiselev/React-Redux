@@ -3,84 +3,72 @@ import Button from '../Button/Button';
 import { useState } from 'react';
 import cn from 'classnames';
 
-
 function JournalForm({ onSubmit }) {
-
 	const [formValidState, setFormValidState] = useState({
 		title: true,
 		post: true,
 		date: true
 	});
 
-	// const [inputData, setInputData] = useState('');
-	// const [state, setState] = useState({
-	// 	age: 31
-	// });
-
-	// const [state2, setState2] = useState([1,2,3]);
-	// console.log('🚀 ~ JournalForm ~ state2:', state2);
-
-	// const inputChange = (event) => {
-	// 	setInputData(event.target.value);
-	// };
-
 	const addJournalItem = (e) => {
 		e.preventDefault();
-		// СБОР всех полей НО УЧТИ ЧТО formData будет пустым объектом его можно прочиттать и собрать с помощью
-		// Object.fromEntries(formData);
-
-
 		const formData = new FormData(e.target);
 		const formProps = Object.fromEntries(formData);
-
-
 		let isFormValid = true;
 		if (!formProps.title?.trim().length) {
-			setFormValidState(prevState => ({ ...prevState, title: false }));
+			setFormValidState(state => ({...state, title: false}));
 			isFormValid = false;
 		} else {
-			setFormValidState(prevState => ({ ...prevState, title: true }));
+			setFormValidState(state => ({...state, title: true}));
 		}
 		if (!formProps.post?.trim().length) {
-			setFormValidState(prevState => ({ ...prevState, post: false }));
+			setFormValidState(state => ({...state, post: false}));
 			isFormValid = false;
 		} else {
-			setFormValidState(prevState => ({ ...prevState, post: true }));
-
+			setFormValidState(state => ({...state, post: true}));
 		}
 		if (!formProps.date) {
-			setFormValidState(prevState => ({ ...prevState, date: false }));
+			setFormValidState(state => ({...state, date: false}));
 			isFormValid = false;
 		} else {
-			setFormValidState(prevState => ({ ...prevState, date: true }));
+			setFormValidState(state => ({...state, date: true}));
 		}
 		if (!isFormValid) {
 			return;
 		}
 		onSubmit(formProps);
-
-
-		///////////////////////////////////////////////
-		// Интересный подход и он работает
-		// state2.push(4);
-		// setState2([...state2]);
-		// Объект
-		// state.age = 150
-		// setState({...state});
 	};
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
-			<input type='text' name='title' className={cn(styles['input'], { [styles['invalid']]: !formValidState.title })} />
-			<input type='date' name='date' className={cn(styles['input'], { [styles['invalid']]: !formValidState.date })} />
-			<input type='text' name='tag' />
-			<textarea name="post" id="" cols="30" rows="10" className={cn(styles['input'], { [styles['invalid']]: !formValidState.post })} />
-			<Button text="Сохранить" onClickCustom={() => {
-				// console.log('Нажали');
-			}} />
+			<div>
+				<input type='text' name='title' className={cn(styles['input-title'], {
+					[styles['invalid']]: !formValidState.title
+				})}/>
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor="date" className={styles['form-label']}>
+					<img src='/calendar.svg' alt='Иконка календаря'/>
+					<span>Дата</span>
+				</label>
+				<input type='date' name='date' id="date" className={cn(styles['input'], {
+					[styles['invalid']]: !formValidState.date
+				})} />
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor="tag" className={styles['form-label']}>
+					<img src='/folder.svg' alt='Иконка папки'/>
+					<span>Метки</span>
+				</label>
+				<input type='text' id="tag" name='tag' className={styles['input']} />
+			</div>
+			
+			<textarea name="post" id="" cols="30" rows="10" className={cn(styles['input'], {
+				[styles['invalid']]: !formValidState.post
+			})}></textarea>
+			<Button text="Сохранить" />
 		</form>
 	);
 }
-
 
 export default JournalForm;
