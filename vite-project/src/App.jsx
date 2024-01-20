@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import JournaList from './components/JournaList/JournaList';
 import JournaAddButton from './components/JournaAddButton/JournaAddButton';
 import JournalForm from './components/JournalForm/JournalForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -25,8 +25,18 @@ function App() {
 		// }
 	];
 	const [items, setItems] = useState(INITIAL_DATA);
-	console.log('🚀 ~ App ~ items:', items);
 
+
+	useEffect(() => {
+	// Side Effects
+		//   Нужно использовать при работе
+		// Работа с локал сторадж
+		// Работа с Таймерами
+		// Работа с запросам к API
+
+	// вне цикла evaluate
+	}, []);
+	
 
 	const addTodo = (item) => {
 		setItems(oldItems => [...oldItems, {
