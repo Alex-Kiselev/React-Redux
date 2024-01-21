@@ -61,10 +61,10 @@ function App() {
 
 	const addTodo = (item) => {
 		setItems(oldItems => [...oldItems, {
-			id: oldItems.length > 0 ? Math.max(...oldItems.map(el => el.id)) + 1 : 1,
+			post: item.post,
 			title: item.title,
 			date: new Date(item.date),
-			post: item.post
+			id: oldItems.length > 0 ? Math.max(...oldItems.map(i => i.id)) + 1 : 1
 		}]);
 	};
 
