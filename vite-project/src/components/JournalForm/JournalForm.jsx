@@ -16,16 +16,17 @@ function JournalForm({ onSubmit }) {
 
 
 	useEffect(() => {
-		console.log('Монтирование');
+		// console.log('Монтирование');
 		let timerId;
 		if(!formValidState.title || !formValidState.post || !formValidState.date) {
 			timerId = setTimeout(() => {
 				setFormValidState(INITIAL_STATE);
 			}, 2000);
 		}
+		// console.log('🚀 ~ Присваемаем ID таймеру чтобы потом удалить:', timerId);
 
 		return () => {
-			console.log('Размантирование, очистка');
+			// console.log('Размантирование, очистка');
 			clearTimeout(timerId);
 		};
 
