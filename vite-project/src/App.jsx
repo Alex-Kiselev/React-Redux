@@ -10,33 +10,45 @@ import { useEffect, useState } from 'react';
 function App() {
 
 	// return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
-	const INITIAL_DATA = [
-		// {
-		// 	id: 1,
-		// 	title: 'Подготовка к обновлению курсов',
-		// 	date: new Date(),
-		// 	text: 'Горные походы открывают удивительные природные ландшафты'
-		// },
-		// {
-		// 	id: 2,
-		// 	title: 'Поход в годы',
-		// 	date: new Date(),
-		// 	text: 'Думал, что очень много времени'
-		// }
-	];
-	const [items, setItems] = useState(INITIAL_DATA);
+	// const INITIAL_DATA = [
+	// 	{
+	// 		id: 1,
+	// 		title: 'Подготовка к обновлению курсов',
+	// 		date: new Date(),
+	// 		text: 'Горные походы открывают удивительные природные ландшафты'
+	// 	},
+	// 	{
+	// 		id: 2,
+	// 		title: 'Поход в годы',
+	// 		date: new Date(),
+	// 		text: 'Думал, что очень много времени'
+	// 	}
+	// ];
+
+	const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem('data'));
+		if (data) {
+			setItems(data.map(el => ({
+				...el,
+				date: new Date(el.date)
+			})
+			));
+		}
+	}, []);
 
 
 	useEffect(() => {
-	// Side Effects
+		// Side Effects
 		//   Нужно использовать при работе
 		// Работа с локал сторадж
 		// Работа с Таймерами
 		// Работа с запросам к API
 
-	// вне цикла evaluate
+		// вне цикла evaluate
 	}, []);
-	
+
 
 	const addTodo = (item) => {
 		setItems(oldItems => [...oldItems, {
@@ -86,7 +98,7 @@ function App() {
 					{list} 
 				</JournaList> */}
 
-				<JournaList items={items}/>
+				<JournaList items={items} />
 			</LeftPanel>
 			<Body>
 				<JournalForm onSubmit={addTodo} />
