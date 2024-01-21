@@ -25,6 +25,7 @@ function JournaList({ items }) {
 				<JournalItem
 					title={el.title}
 					text={el.text}
+					post={el.post}
 					date={el.date}
 				/>
 			</CardButton>

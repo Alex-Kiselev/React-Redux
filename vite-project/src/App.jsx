@@ -40,6 +40,15 @@ function App() {
 
 
 	useEffect(() => {
+		// После изменения items записываем новые данные в локал сторадж!!!
+		if(items.length) {
+			localStorage.setItem('data', JSON.stringify(items));
+		}
+	}, [items]);
+	
+
+
+	useEffect(() => {
 		// Side Effects
 		//   Нужно использовать при работе
 		// Работа с локал сторадж
@@ -55,7 +64,7 @@ function App() {
 			id: oldItems.length > 0 ? Math.max(...oldItems.map(el => el.id)) + 1 : 1,
 			title: item.title,
 			date: new Date(item.date),
-			text: item.text
+			post: item.post
 		}]);
 	};
 
