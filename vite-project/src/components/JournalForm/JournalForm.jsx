@@ -1,14 +1,41 @@
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 
 function JournalForm({ onSubmit }) {
-	const [formValidState, setFormValidState] = useState({
+
+	const INITIAL_STATE = {
 		title: true,
 		post: true,
 		date: true
-	});
+	};
+
+	const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+
+
+
+	useEffect(() => {
+		console.log('Монтирование');
+		let timerId;
+		if(!formValidState.title || !formValidState.post || !formValidState.date) {
+			timerId = setTimeout(() => {
+				setFormValidState(INITIAL_STATE);
+			}, 2000);
+		}
+
+		return () => {
+			console.log('Размантирование, очистка');
+			clearTimeout(timerId);
+		};
+
+
+		//Как происходит размантирование и очистка и монтирование
+		// Сначала происходит Монтирование компонента, далее происходит очистка 1 открытие компонента
+		// Мы нажали на добавление у нас сработал эффект НО ОН СНАЧААЛА ЗАЙДЕТ В ОЧИСТКУ ЭФФЕКТА А ПОТОМ БУДЕТ ТОЛЬКО ВЫПОЛНЯТЬ ПОСТРОЧНЫЙ КОД СВЕРХУ ВНИЗ
+	
+	}, [formValidState]);
+	
 
 	const addJournalItem = (e) => {
 		e.preventDefault();
