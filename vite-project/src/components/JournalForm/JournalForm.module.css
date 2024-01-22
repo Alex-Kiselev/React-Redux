@@ -1,3 +1,10 @@
+.journal-form {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+
 .input-title {
 	border: none;
 	background: none;
@@ -32,10 +39,9 @@
 	font-family: 'Source Sans 3', sans-serif;
 	border-bottom: 1px solid #323232;
 	width: 100%;
-    color: white;
 }
 
 .invalid {
-    border: 2px solid red;
-    background: rgb(222, 82, 82);
+	border: 1px solid red;
+	background: rgb(68, 6, 6);
 }

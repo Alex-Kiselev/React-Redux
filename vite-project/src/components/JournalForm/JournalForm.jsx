@@ -12,7 +12,7 @@ function JournalForm({ onSubmit }) {
 	const postRef = useRef();
 
 	const focusError = (isValid) => {
-		switch (true) {
+		switch(true) {
 		case !isValid.title:
 			titleRef.current.focus();
 			break;
@@ -23,15 +23,13 @@ function JournalForm({ onSubmit }) {
 			postRef.current.focus();
 			break;
 		}
-
 	};
 
 	useEffect(() => {
 		let timerId;
 		if (!isValid.date || !isValid.post || !isValid.title) {
+			focusError(isValid);
 			timerId = setTimeout(() => {
-				focusError(isValid);
-
 				dispatchForm({ type: 'RESET_VALIDITY' });
 			}, 2000);
 		}
@@ -54,7 +52,7 @@ function JournalForm({ onSubmit }) {
 	}, [isFormReadyToSubmit, values, onSubmit]);
 
 	const onChange = (e) => {
-		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value } });
+		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value }});
 	};
 
 	const addJournalItem = (e) => {
@@ -65,27 +63,27 @@ function JournalForm({ onSubmit }) {
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<div>
-				<input type='text' onChange={onChange} value={values.title} name='title' ref={titleRef} className={cn(styles['input-title'], {
+				<input type='text' ref={titleRef} onChange={onChange} value={values.title} name='title' className={cn(styles['input-title'], {
 					[styles['invalid']]: !isValid.title
-				})} />
+				})}/>
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>
-					<img src='/calendar.svg' alt='Иконка календаря' />
+					<img src='/calendar.svg' alt='Иконка календаря'/>
 					<span>Дата</span>
 				</label>
-				<input type='date' onChange={onChange} name='date' value={values.data} id="date" ref={dateRef} className={cn(styles['input'], {
+				<input type='date' ref={dateRef} onChange={onChange} name='date' value={values.data} id="date" className={cn(styles['input'], {
 					[styles['invalid']]: !isValid.date
 				})} />
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="tag" className={styles['form-label']}>
-					<img src='/folder.svg' alt='Иконка папки' />
+					<img src='/folder.svg' alt='Иконка папки'/>
 					<span>Метки</span>
 				</label>
 				<input type='text' onChange={onChange} id="tag" value={values.tag} name='tag' className={styles['input']} />
 			</div>
-			<textarea name="post" ref={postRef} id="" onChange={onChange} value={values.post} cols="30" rows="10" className={cn(styles['input'], {
+			<textarea ref={postRef} name="post" id="" onChange={onChange} value={values.post} cols="30" rows="10" className={cn(styles['input'], {
 				[styles['invalid']]: !isValid.post
 			})}></textarea>
 			<Button text="Сохранить" />

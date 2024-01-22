@@ -1,47 +1,28 @@
-import './App.css';
-import LeftPanel from './layouts/LeftPanel/LeftPanel';
-import Body from './layouts/Body/Body';
-import Header from './components/Header/Header';
-import JournaList from './components/JournaList/JournaList';
-import JournaAddButton from './components/JournaAddButton/JournaAddButton';
-import JournalForm from './components/JournalForm/JournalForm';
 import { useEffect, useState } from 'react';
+import './App.css';
+import Header from './components/Header/Header';
+import JournalAddButton from './components/JournalAddButton/JournalAddButton';
+import JournalForm from './components/JournalForm/JournalForm';
+import JournalList from './components/JournalList/JournalList';
+import Body from './layouts/Body/Body';
+import LeftPanel from './layouts/LeftPanel/LeftPanel';
 
 function App() {
-
-	// return React.createElement('div', {}, React.createElement('h1', {}, 'Заголовок', React.createElement('div', {}, 'Начало проекта')));
-	// const INITIAL_DATA = [
-	// 	{
-	// 		id: 1,
-	// 		title: 'Подготовка к обновлению курсов',
-	// 		date: new Date(),
-	// 		text: 'Горные походы открывают удивительные природные ландшафты'
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		title: 'Поход в годы',
-	// 		date: new Date(),
-	// 		text: 'Думал, что очень много времени'
-	// 	}
-	// ];
-
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem('data'));
 		if (data) {
-			setItems(data.map(el => ({
-				...el,
-				date: new Date(el.date)
-			})
-			));
+			setItems(data.map(item => ({
+				...item,
+				date: new Date(item.date)
+			})));
 		}
 	}, []);
 
-
 	useEffect(() => {
-		// После изменения items записываем новые данные в локал сторадж!!!
-		if(items.length) {
+		if (items.length) {
+			console.log('Запись!');
 			localStorage.setItem('data', JSON.stringify(items));
 		}
 	}, [items]);
@@ -59,7 +40,7 @@ function App() {
 	}, []);
 
 
-	const addTodo = (item) => {
+	const addItem = (item) => {
 		setItems(oldItems => [...oldItems, {
 			post: item.post,
 			title: item.title,
@@ -98,23 +79,15 @@ function App() {
 	return (
 		<div className='app'>
 			<LeftPanel>
-				<Header />
-				<JournaAddButton />
-
-
-				{/* 1 ВАРИАНТ либо 2 вариант перенести логику полностью */}
-				{/* <JournaList>
-					{list} 
-				</JournaList> */}
-
-				<JournaList items={items} />
+				<Header/>
+				<JournalAddButton/>
+				<JournalList items={items} />
 			</LeftPanel>
 			<Body>
-				<JournalForm onSubmit={addTodo} />
+				<JournalForm onSubmit={addItem}/>
 			</Body>
-		</div >
+		</div>
 	);
-
 }
 
 export default App;
