@@ -1,9 +1,10 @@
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
-import { useEffect, useReducer, useRef } from 'react';
+import { useContext, useEffect, useReducer, useRef } from 'react';
 import cn from 'classnames';
 import { INITIAL_STATE, formReducer } from './JournalForm.state';
 import Input from '../Input/Input';
+import { UserContext } from '../../context/user.context';
 
 function JournalForm({ onSubmit }) {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
@@ -11,6 +12,7 @@ function JournalForm({ onSubmit }) {
 	const titleRef = useRef();
 	const dateRef = useRef();
 	const postRef = useRef();
+	const { userId } = useContext(UserContext);
 
 	const focusError = (isValid) => {
 		switch(true) {
@@ -37,12 +39,6 @@ function JournalForm({ onSubmit }) {
 		return () => {
 			clearTimeout(timerId);
 		};
-
-
-		//Как происходит размантирование и очистка и монтирование
-		// Сначала происходит Монтирование компонента, далее происходит очистка 1 открытие компонента
-		// Мы нажали на добавление у нас сработал эффект НО ОН СНАЧААЛА ЗАЙДЕТ В ОЧИСТКУ ЭФФЕКТА А ПОТОМ БУДЕТ ТОЛЬКО ВЫПОЛНЯТЬ ПОСТРОЧНЫЙ КОД СВЕРХУ ВНИЗ
-
 	}, [isValid]);
 
 	useEffect(() => {
@@ -51,6 +47,10 @@ function JournalForm({ onSubmit }) {
 			dispatchForm({ type: 'CLEAR' });
 		}
 	}, [isFormReadyToSubmit, values, onSubmit]);
+
+	useEffect(() => {
+		dispatchForm({ type: 'SET_VALUE', payload: { userId }});
+	}, [userId]);
 
 	const onChange = (e) => {
 		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value }});
@@ -83,7 +83,7 @@ function JournalForm({ onSubmit }) {
 			<textarea ref={postRef} name="post" id="" onChange={onChange} value={values.post} cols="30" rows="10" className={cn(styles['input'], {
 				[styles['invalid']]: !isValid.post
 			})}></textarea>
-			<Button text="Сохранить" />
+			<Button>Сохранить</Button>
 		</form>
 	);
 }
