@@ -9,7 +9,7 @@ function SelectUser() {
 	};
 	
 	return (
-		<select style={{color: 'black'}} name="user" id="user" value={userId} onChange={changeUser}>
+		<select style={{color: 'black', backgroundColor: '#7777d4'}} name="user" id="user" value={userId} onChange={changeUser}>
 			<option value="1">Антон</option>
 			<option value="2">Вася</option>
 		</select>
